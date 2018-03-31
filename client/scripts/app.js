@@ -47,7 +47,7 @@ var app = {
       success: function (data) {
         // Clear messages input
         app.$message.val('');
-console.error('chatterbox: sent message');
+        console.error('chatterbox: sent message');
         // Trigger a fetch to update the messages, pass true to animate
         app.fetch();
       },
@@ -63,7 +63,7 @@ console.error('chatterbox: sent message');
       type: 'GET',
       data: { order: '-createdAt' },
       success: function(data) {
-        console.log(data)
+        console.log(data);
         // Don't bother if we have nothing to work with
         if (!data.results || !data.results.length) { return; }
 
@@ -72,6 +72,8 @@ console.error('chatterbox: sent message');
 
         // Get the last message
         var mostRecentMessage = data.results[data.results.length - 1];
+        console.log(mostRecentMessage.objectId);
+        console.log(app.lastMessageId);
 
         // Only bother updating the DOM if we have a new message
         if (mostRecentMessage.objectId !== app.lastMessageId) {
@@ -166,7 +168,7 @@ console.error('chatterbox: sent message');
     $message.text(message.text).appendTo($chat);
 
     // Add the message to the UI
-    app.$chats.append($chat);
+    app.$chats.prepend($chat);
 
   },
 

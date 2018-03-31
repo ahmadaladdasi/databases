@@ -9,14 +9,15 @@ module.exports = {
         var obj = {};
         obj.results = data;
         res.send(obj);
-      })
+      });
     }, // a function which handles a get request for all messages
     post: function (req, res) {
       app.use(bodyParser.json());
-      // console.log(req.body);
-      // models.messages.post(req.body);
-      
-      res.send()
+      // req.body = { username: 'andrew', text: 'sup', roomname: 'hr93' }
+      models.messages.post(req.body, function() {
+        console.log('sent');
+        res.send();
+      });
     } // a function which handles posting a message to the database
   },
 
