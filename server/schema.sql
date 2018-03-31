@@ -18,7 +18,7 @@ CREATE TABLE users (
 CREATE TABLE rooms (
   /* Describe your table here.*/
   id INT NOT NULL AUTO_INCREMENT,
-  name VARCHAR(25),
+  roomname VARCHAR(25),
   
   PRIMARY KEY(id)
   -- INDEX (user_id),
@@ -30,7 +30,7 @@ CREATE TABLE messages (
   id INT NOT NULL AUTO_INCREMENT,
   user_id INT NOT NULL,
   room_id INT NOT NULL,
-  body VARCHAR(280),
+  text VARCHAR(280),
   
   PRIMARY KEY(id),
   -- INDEX (user_id),

@@ -36,7 +36,7 @@ var app = {
   },
 
   send: function(message) {
-    app.startSpinner();
+    // app.startSpinner();
 
     // POST the message to the server
     $.ajax({
@@ -47,7 +47,7 @@ var app = {
       success: function (data) {
         // Clear messages input
         app.$message.val('');
-
+console.error('chatterbox: sent message');
         // Trigger a fetch to update the messages, pass true to animate
         app.fetch();
       },
@@ -63,6 +63,7 @@ var app = {
       type: 'GET',
       data: { order: '-createdAt' },
       success: function(data) {
+        console.log(data)
         // Don't bother if we have nothing to work with
         if (!data.results || !data.results.length) { return; }
 
