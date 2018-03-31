@@ -9,15 +9,18 @@ module.exports = {
         var obj = {};
         obj.results = data;
         res.send(obj);
-      });
+      })
     }, // a function which handles a get request for all messages
     post: function (req, res) {
       app.use(bodyParser.json());
-      // req.body = { username: 'andrew', text: 'sup', roomname: 'hr93' }
-      models.messages.post(req.body, function() {
-        console.log('sent');
-        res.send();
-      });
+      models.users.post(req.body,function() {
+        models.rooms.post(req.body, function(){
+          models.messages.post(req.body, function() {
+            console.log('sent')
+            res.send()
+          });
+        });
+      })    
     } // a function which handles posting a message to the database
   },
 
@@ -27,7 +30,12 @@ module.exports = {
       res.send('hello users get');
     },
     post: function (req, res) {
-      res.send('hello users post');
+      app.use(bodyParser.json());
+      // req.body = { username: 'andrew', text: 'sup', roomname: 'hr93' }
+      models.users.post(req.body, function() {
+        console.log('sent')
+        res.send()
+      });
     }
   }
 };
